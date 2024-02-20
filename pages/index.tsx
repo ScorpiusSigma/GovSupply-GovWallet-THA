@@ -1,73 +1,63 @@
-import Layout from '../components/MyLayout'
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import React, { useState } from "react";
+import fetch from "isomorphic-unfetch";
+import { StaffMappingData } from "server/type";
 
-const ShowLink = ({ show }) => (
-  <li key={show.id}>
-    <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-      <a>{show.name}</a>
-    </Link>
-    <style jsx>{`
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
+export default function App() {
+	const [staffInfo, setStaffInfo] = useState<StaffMappingData[]>([]);
+	const [redeemable, setRedeemable] = useState<boolean>(false);
 
-      a {
-        text-decoration: none;
-        color: blue;
-      }
+	const onLookup = (e) => {
+		e.preventDefault();
+		const staffId = e.target.staffIdorTeamName.value;
+		fetch("/api/lookupStaff", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ id: staffId }),
+		})
+			.then((e) => e.json())
+			.then((data) => {
+				const resStaffInfo = data.data;
+				setStaffInfo(resStaffInfo);
+				return resStaffInfo.length ? resStaffInfo[0].team_name : "";
+			})
+			.then((teamName) => getRedemptionStatus(teamName));
+	};
 
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-  </li>
-)
+	const getRedemptionStatus = (teamName) => {
+		fetch("/api/RedemptionStatus", {
+			method: "POST",
+			body: JSON.stringify({ team_name: teamName }),
+		})
+			.then((e) => e.json())
+			.then((data) => {
+				const resRedeemed = data.redeemed;
+				setRedeemable(resRedeemed);
+			});
+	};
 
-const Index = (props) => (
-  <Layout>
-    <h1>Batman TV Shows</h1>
-    <ul>
-      {props.shows.map(({show}) => (
-        <ShowLink key={show.id} show={show} />
-      ))}
-    </ul>
-    <style jsx>{`
-      h1, a {
-        font-family: "Arial";
-      }
+	const onRedeem = (e) => {
+		e.preventDefault();
+	};
 
-      ul {
-        padding: 0;
-      }
-
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-  </Layout>
-)
-
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
-
-  console.log(`Show data fetched. Count: ${data.length}`)
-
-  return {
-    shows: data
-  }
+	return (
+		<div>
+			<form onSubmit={onLookup}>
+				Staff ID or Team Name: <input id="staffIdorTeamName" />
+				<button type="submit">Lookup</button>
+			</form>
+			<div>
+				<p>{staffInfo.length ? staffInfo[0].team_name : ""}</p>
+				{redeemable ? (
+					<button type="submit" onClick={onRedeem}>
+						Redeem
+					</button>
+				) : (
+					<button type="submit">Can't Redeem</button>
+				)}
+			</div>
+			<div>{staffInfo.map((staff) => staff.staff_pass_id)}</div>
+		</div>
+	);
 }
-
-export default Index
