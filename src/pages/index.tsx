@@ -71,27 +71,42 @@ export default function App() {
 	};
 
 	return (
-		<div className="bg-[#034F1B] text-white min-h-screen flex flex-col items-center justify-center">
-			<h1 className="text-4xl font-bold mb-6 text-center">
-				Christmas Redemption System
+		<div className="relative bg-[#034F1B] text-white min-h-screen flex flex-col items-center justify-center text-sm sm:text-base">
+			<img
+				src="https://i.gifer.com/19V4.gif"
+				className="absolute top-0 left-0 -z-0 w-full h-full opacity-20"
+			/>
+			<h1 className="text-xl sm:text-4xl font-bold py-[0.5vh] sm:mb-6 text-center z-10">
+				🎄Christmas Redemption🎄
 			</h1>
-			<div className="max-w-2xl mx-auto p-6 bg-[#ffffff] rounded-lg shadow-lg text-[#161853] flex flex-col gap-2 w-full">
+			<div className="max-w-2xl mx-auto p-6 bg-[#ffffff] rounded-lg shadow-lg text-[#161853] flex flex-col gap-2 w-full min-h-96 z-10">
 				<SearchBar handleLookupStaffID={handleLookupStaffID} />
-				<StaffInfoCard
-					staffInfo={staffInfo[0]}
-					teamInfo={{ count: teamMembers.length }}
-				/>
-				<TeamMemberView teamMembers={teamMembers} />
-				{redeemedStatus.team_name ? (
-					<RedeemedButton redeemedStatus={redeemedStatus} />
+
+				{teamMembers.length ? (
+					<>
+						<StaffInfoCard
+							staffInfo={staffInfo[0]}
+							teamInfo={{ count: teamMembers.length }}
+						/>
+						<TeamMemberView teamMembers={teamMembers} />
+						{redeemedStatus.team_name ? (
+							<RedeemedButton redeemedStatus={redeemedStatus} />
+						) : (
+							<RedeemButton
+								redeemedStatus={redeemedStatus}
+								teamName={
+									staffInfo.length
+										? staffInfo[0].team_name
+										: ""
+								}
+								getRedemptionStatus={getRedemptionStatus}
+							/>
+						)}
+					</>
 				) : (
-					<RedeemButton
-						redeemedStatus={redeemedStatus}
-						teamName={
-							staffInfo.length ? staffInfo[0].team_name : ""
-						}
-						getRedemptionStatus={getRedemptionStatus}
-					/>
+					<div className="my-12 w-full h-full text-9xl text-center">
+						🎅🏻
+					</div>
 				)}
 			</div>
 		</div>

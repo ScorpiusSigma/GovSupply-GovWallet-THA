@@ -14,13 +14,15 @@ export default function TeamMemberView(props: any) {
 
 	return (
 		<div className="flex flex-col gap-0 mt-2">
-			<div className="px-4 text-gray-500">Team Members</div>
+			<div className="px-4 text-gray-500">MEMBER LIST</div>
 			<div className="relative flex min-h-80 max-h-80 overflow-y-auto flex-col mb-2">
 				<table className="table-auto w-full">
 					<thead className="sticky top-0 bg-white">
 						<tr>
 							<th className="px-4 py-1 text-left">Staff ID</th>
-							<th className="px-4 py-1 text-center">Team Name</th>
+							<th className="px-4 py-1 text-center hidden sm:flex">
+								Team Name
+							</th>
 							<th className="px-4 py-1 text-center">
 								Registered Date
 							</th>
@@ -34,7 +36,7 @@ export default function TeamMemberView(props: any) {
 										<td className="px-4 py-1 text-left">
 											{member.staff_pass_id}
 										</td>
-										<td className="px-4 py-1 text-center">
+										<td className="px-4 py-1 text-center hidden sm:flex">
 											{member.team_name}
 										</td>
 										<td className="px-4 py-1 text-center">
