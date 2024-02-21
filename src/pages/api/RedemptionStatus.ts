@@ -14,7 +14,7 @@ export default function handler(
 ) {
 	const { team_name } = req.body;
 	if (!team_name) {
-		res.json({ data: { team_name: "", create_at: "" } });
+		res.json({ data: { team_name: "", redeemed_at: "" } });
 		return;
 	}
 	redemptionSystem

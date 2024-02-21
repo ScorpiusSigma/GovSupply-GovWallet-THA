@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RedemptionData, StaffMappingData } from "../types/server";
 import RedeemedButton from "@/components/RedeemedButton";
 import TeamMemberView from "@/components/TeamMemberView";
@@ -10,7 +10,7 @@ export default function App() {
 	const [staffInfo, setStaffInfo] = useState<StaffMappingData[]>([]);
 	const [redeemedStatus, setRedeemedStatus] = useState<RedemptionData>({
 		team_name: "",
-		create_at: "",
+		redeemed_at: "",
 	});
 	const [teamMembers, setTeamMembers] = useState([]);
 
@@ -83,9 +83,7 @@ export default function App() {
 				/>
 				<TeamMemberView teamMembers={teamMembers} />
 				{redeemedStatus.team_name ? (
-					<RedeemedButton
-						redeemedStatus={redeemedStatus}
-					/>
+					<RedeemedButton redeemedStatus={redeemedStatus} />
 				) : (
 					<RedeemButton
 						redeemedStatus={redeemedStatus}

@@ -29,7 +29,7 @@ export default function RedeemedButton(props: any) {
 						type="submit"
 						disabled={true}
 					>
-						Redeemed on {redeemedStatus.create_at?.split("T")[0]}
+						Redeemed on {redeemedStatus.redeemed_at?.split("T")[0]}
 					</button>
 				) : (
 					<div className="relative bg-[#43766C] text-white w-full h-20 rounded-lg shadow-lg shadow-black flex flex-row items-center overflow-hidden">
