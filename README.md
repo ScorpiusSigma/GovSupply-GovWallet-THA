@@ -66,4 +66,4 @@ npm run dev
 
 Feel the festive spirit as you manage the Christmas Redemption System with ease. Happy holidays! 🎅🎁
 
-[A Take-Home Assignment by GovTech GovSupply GovWallet]
+[A Take-Home Assignment by GovTech GovSupply GovWallet](./docs/Take-Home%20Assignment%2059666bf04ff7483ba95edeb4a75f0b1c.pdf)
