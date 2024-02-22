@@ -1,40 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Christmas Redemption System
+
+🎄 Welcome to the Christmas Redemption System! Spread the holiday joy by efficiently managing the distribution of gifts to the teams in your department. This Node.js and Typescript-based system ensures a smooth process for representatives to redeem their team's gifts.
+
+## Table of Contents
+
+-   [Background](#background)
+-   [Task](#task)
+-   [Getting Started](#getting-started)
+-   [Screenshots](#screenshots)
+
+## Background
+
+'Tis the season of giving, and you have the important task of distributing gifts to department teams. Each team can send a representative to redeem their gifts at the counter. The representative must show their staff pass as proof of identity, and each staff pass has a unique ID. A CSV file contains the mapping of staff pass IDs to their corresponding team names, along with the timestamp of when the mapping record was added.
+
+## Task
+
+Build a system that supports three main functions:
+
+1. **Look up:** Perform a lookup of the representative's staff pass ID against the mapping file.
+2. **Verify:** Verify if the team can redeem their gift by comparing the team name against past redemptions in the redemption data.
+3. **Add Redemption:** Add new redemption to the redemption data if the team is still eligible; otherwise, send the representative away.
+
+The redemption data should include at least the following information: `team_name` and `redeemed_at`, where the latter refers to the timestamp the redemption occurred in epoch milliseconds.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up and run the Christmas Redemption System:
+
+1. **Clone the Repository:**
+
+```bash
+git clone https://github.com/ScorpiusSigma/GovSupply-GovWallet-THA.git
+cd christmas-redemption-system
+```
+
+2. **Install Dependencies:**
+
+```bash
+npm install
+```
+
+3. **Run the Application:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Home Screen
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![Home Screen](./docs/HomeScreen.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Search Screen
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![Search Screen](./docs/SearchScreen.png)
 
-## Learn More
+### Redeeming Screen
 
-To learn more about Next.js, take a look at the following resources:
+![Redeeming Screen](./docs/RedeemingScreen.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Redeemed Screen
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Redeemed Screen](./docs/RedeemedScreen.png)
 
-## Deploy on Vercel
+Feel the festive spirit as you manage the Christmas Redemption System with ease. Happy holidays! 🎅🎁
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[A Take-Home Assignment by GovTech GovSupply GovWallet]
