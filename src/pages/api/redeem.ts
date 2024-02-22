@@ -13,11 +13,11 @@ export default function handler(
 ) {
 	const { team_name } = req.body;
 	if (!team_name) {
-		res.json({ success: false });
+		res.status(400).json({ success: false });
 		return;
 	}
 
 	redemptionSystem.redeem(team_name).then((data) => {
-		res.json({ success: data });
+		res.status(200).json({ success: data });
 	});
 }

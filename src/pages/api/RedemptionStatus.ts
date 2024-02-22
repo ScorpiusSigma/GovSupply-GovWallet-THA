@@ -14,12 +14,12 @@ export default function handler(
 ) {
 	const { team_name } = req.body;
 	if (!team_name) {
-		res.json({ data: { team_name: "", redeemed_at: "" } });
+		res.status(400).json({ data: { team_name: "", redeemed_at: "" } });
 		return;
 	}
 	redemptionSystem
 		.getRedemptionStatus(team_name)
 		.then((data: RedemptionData) => {
-			res.json({ data: data });
+			res.status(200).json({ data: data });
 		});
 }

@@ -13,11 +13,11 @@ export default function handler(
 ) {
 	const { team_name } = req.body;
 	if (!team_name) {
-		res.json({ data: [] });
+		res.status(400).json({ data: [] });
 		return;
 	}
 
 	redemptionSystem.lookupTeamMembers(team_name).then((data) => {
-		res.json({ data: data });
+		res.status(200).json({ data: data });
 	});
 }

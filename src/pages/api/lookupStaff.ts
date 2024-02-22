@@ -18,6 +18,6 @@ export default function handler(
 	}
 
 	redemptionSystem.lookupRepresentative(staff_pass_id).then((data) => {
-		res.json({ data: data });
+		res.status(200).json({ data: data });
 	});
 }
