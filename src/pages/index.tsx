@@ -70,22 +70,34 @@ export default function App() {
 			});
 	};
 
+	const renderSnowflakes = () => {
+		return [...Array(10)].map((x) => (
+			<img
+				src="https://i.gifer.com/19V4.gif"
+				className="top-0 left-0 -z-0 w-full opacity-20"
+			/>
+		));
+	};
+	const renderButton = () => {
+		return redeemedStatus.team_name ? (
+			<RedeemedButton redeemedStatus={redeemedStatus} />
+		) : (
+			<RedeemButton
+				redeemedStatus={redeemedStatus}
+				teamName={staffInfo.length ? staffInfo[0].team_name : ""}
+				getRedemptionStatus={getRedemptionStatus}
+			/>
+		);
+	};
+
 	return (
 		<div className="relative bg-[#034F1B] text-white min-h-screen flex flex-col items-center justify-center text-sm sm:text-base overflow-hidden">
-			<div className="absolute w-full h-full">
-				{[...Array(10)].map((x) => (
-					<img
-						src="https://i.gifer.com/19V4.gif"
-						className="top-0 left-0 -z-0 w-full opacity-20"
-					/>
-				))}
-			</div>
+			<div className="absolute w-full h-full">{renderSnowflakes()}</div>
 			<h1 className="text-xl sm:text-4xl font-bold py-[0.5vh] sm:mb-6 text-center z-10">
 				🎄Christmas Redemption🎄
 			</h1>
 			<div className="max-w-2xl mx-auto p-6 bg-[#ffffff] rounded-lg shadow-lg text-[#161853] flex flex-col gap-2 w-full min-h-96 z-10">
 				<SearchBar handleLookupStaffID={handleLookupStaffID} />
-
 				{teamMembers.length ? (
 					<>
 						<StaffInfoCard
@@ -93,19 +105,7 @@ export default function App() {
 							teamInfo={{ count: teamMembers.length }}
 						/>
 						<TeamMemberView teamMembers={teamMembers} />
-						{redeemedStatus.team_name ? (
-							<RedeemedButton redeemedStatus={redeemedStatus} />
-						) : (
-							<RedeemButton
-								redeemedStatus={redeemedStatus}
-								teamName={
-									staffInfo.length
-										? staffInfo[0].team_name
-										: ""
-								}
-								getRedemptionStatus={getRedemptionStatus}
-							/>
-						)}
+						{renderButton()}
 					</>
 				) : (
 					<div className="my-12 w-full h-full text-gray-700 text-center">
