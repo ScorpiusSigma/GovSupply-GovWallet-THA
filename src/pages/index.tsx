@@ -71,11 +71,15 @@ export default function App() {
 	};
 
 	return (
-		<div className="relative bg-[#034F1B] text-white min-h-screen flex flex-col items-center justify-center text-sm sm:text-base">
-			<img
-				src="https://i.gifer.com/19V4.gif"
-				className="absolute top-0 left-0 -z-0 w-full h-full opacity-20"
-			/>
+		<div className="relative bg-[#034F1B] text-white min-h-screen flex flex-col items-center justify-center text-sm sm:text-base overflow-hidden">
+			<div className="absolute w-full h-full">
+				{[...Array(10)].map((x) => (
+					<img
+						src="https://i.gifer.com/19V4.gif"
+						className="top-0 left-0 -z-0 w-full opacity-20"
+					/>
+				))}
+			</div>
 			<h1 className="text-xl sm:text-4xl font-bold py-[0.5vh] sm:mb-6 text-center z-10">
 				🎄Christmas Redemption🎄
 			</h1>
@@ -104,8 +108,8 @@ export default function App() {
 						)}
 					</>
 				) : (
-					<div className="my-12 w-full h-full text-9xl text-center">
-						🎅🏻
+					<div className="my-12 w-full h-full text-gray-700 text-center">
+						Search by Staff ID for redemption information
 					</div>
 				)}
 			</div>
