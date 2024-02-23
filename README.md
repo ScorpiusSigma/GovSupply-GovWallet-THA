@@ -46,6 +46,12 @@ npm install
 npm run dev
 ```
 
+4. **Run Cypress test:**
+
+```bash
+npm run component:headless
+```
+
 ## Screenshots
 
 ### Home Screen
