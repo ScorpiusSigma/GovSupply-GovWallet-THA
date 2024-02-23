@@ -20,9 +20,13 @@ export default function RedeemButton(props: any) {
 	return (
 		<>
 			{redeemedStatus?.team_name == "" ? (
-				<div className="bg-transparent w-full h-20"></div>
+				<div
+					data-testid="redeem-button-placeholder"
+					className="bg-transparent w-full h-20"
+				></div>
 			) : (
 				<button
+					data-testid="redeem-button"
 					className="bg-[#43766C] text-white w-full h-20 rounded-lg shadow-lg shadow-black flex flex-row justify-center items-center transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
 					type="submit"
 					onClick={handleRedeem}

@@ -79,7 +79,7 @@ export default function App() {
 		));
 	};
 	const renderButton = () => {
-		return redeemedStatus.team_name ? (
+		return redeemedStatus?.team_name ? (
 			<RedeemedButton redeemedStatus={redeemedStatus} />
 		) : (
 			<RedeemButton

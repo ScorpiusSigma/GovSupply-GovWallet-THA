@@ -9,6 +9,7 @@ export default function SearchBar(props: any) {
 			<div className="w-full h-full">
 				<div className="flex h-full w-full bg-transparent border border-[#FAEDF0]">
 					<input
+						data-testid="search-input"
 						id="staffIdorTeamName"
 						className="bg-transparent w-full focus:bg-none px-5"
 						placeholder="Search by Staff ID"
@@ -16,6 +17,7 @@ export default function SearchBar(props: any) {
 						onChange={(e: any) => setStaffId(e.target.value)}
 					/>
 					<button
+						data-testid="search-button"
 						className="bg-[#034F1B] text-white px-10"
 						onClick={() => handleLookupStaffID(staffId)}
 					>

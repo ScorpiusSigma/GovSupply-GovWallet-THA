@@ -25,6 +25,7 @@ export default function RedeemedButton(props: any) {
 			{redeemedStatus?.team_name ? (
 				showRedeemed ? (
 					<button
+						data-testid="redeemed-on-button"
 						className="bg-gray-400 text-white w-full h-20 rounded-lg flex flex-row justify-center items-center"
 						type="submit"
 						disabled={true}
@@ -32,7 +33,10 @@ export default function RedeemedButton(props: any) {
 						Redeemed on {redeemedStatus.redeemed_at?.split("T")[0]}
 					</button>
 				) : (
-					<div className="relative bg-[#43766C] text-white w-full h-20 rounded-lg shadow-lg shadow-black flex flex-row items-center overflow-hidden">
+					<div
+						data-testid="redeemed-button"
+						className="relative bg-[#43766C] text-white w-full h-20 rounded-lg shadow-lg shadow-black flex flex-row items-center overflow-hidden"
+					>
 						<div className="whitespace-nowrap">
 							---------------------------------------------------------------------------------------------
 						</div>

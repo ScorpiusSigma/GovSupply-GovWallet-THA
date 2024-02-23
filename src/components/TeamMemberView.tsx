@@ -24,7 +24,7 @@ export default function TeamMemberView(props: any) {
 		const decPage = () => setPage(() => Math.max(0, page - 1));
 
 		return (
-			<div className="flex flex-row text-xs sm:text-base rounded-lg overflow-hidden border-y ">
+			<div data-testid="team-member-view" className="flex flex-row text-xs sm:text-base rounded-lg overflow-hidden border-y ">
 				<button className={styleUnselected} onClick={decPage}>
 					{"<"}
 				</button>
