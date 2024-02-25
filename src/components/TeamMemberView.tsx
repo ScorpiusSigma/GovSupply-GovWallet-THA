@@ -1,5 +1,6 @@
 import { StaffMappingData } from "@/types/server";
 import { useState } from "react";
+import Show from "./Show";
 
 export default function TeamMemberView(props: any) {
 	const { teamMembers } = props;
@@ -24,7 +25,10 @@ export default function TeamMemberView(props: any) {
 		const decPage = () => setPage(() => Math.max(0, page - 1));
 
 		return (
-			<div data-testid="team-member-view" className="flex flex-row text-xs sm:text-base rounded-lg overflow-hidden border-y ">
+			<div
+				data-testid="team-member-view"
+				className="flex flex-row text-xs sm:text-base rounded-lg overflow-hidden border-y "
+			>
 				<button className={styleUnselected} onClick={decPage}>
 					{"<"}
 				</button>
@@ -62,29 +66,32 @@ export default function TeamMemberView(props: any) {
 						</tr>
 					</thead>
 					<tbody>
-						{pages.length ? (
-							pages[page].map(
-								(member: StaffMappingData, index: number) => (
-									<tr key={index}>
-										<td className="px-4 py-1 text-left">
-											{member.staff_pass_id}
-										</td>
-										<td className="px-4 py-1 text-center hidden sm:flex">
-											{member.team_name}
-										</td>
-										<td className="px-4 py-1 text-center">
-											{
-												member.created_at
-													.toString()
-													.split("T")[0]
-											}
-										</td>
-									</tr>
-								)
-							)
-						) : (
-							<></>
-						)}
+						<Show>
+							<Show.When isTrue={pages.length}>
+								{pages[page].map(
+									(
+										member: StaffMappingData,
+										index: number
+									) => (
+										<tr key={index}>
+											<td className="px-4 py-1 text-left">
+												{member.staff_pass_id}
+											</td>
+											<td className="px-4 py-1 text-center hidden sm:flex">
+												{member.team_name}
+											</td>
+											<td className="px-4 py-1 text-center">
+												{
+													member.created_at
+														.toString()
+														.split("T")[0]
+												}
+											</td>
+										</tr>
+									)
+								)}
+							</Show.When>
+						</Show>
 					</tbody>
 				</table>
 			</div>

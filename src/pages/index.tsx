@@ -5,6 +5,7 @@ import TeamMemberView from "@/components/TeamMemberView";
 import StaffInfoCard from "@/components/StaffInfoCard";
 import SearchBar from "@/components/SearchBar";
 import RedeemButton from "@/components/RedeemButton";
+import Show from "@/components/Show";
 
 export default function App() {
 	const [staffInfo, setStaffInfo] = useState<StaffMappingData[]>([]);
@@ -23,13 +24,11 @@ export default function App() {
 			body: JSON.stringify({ staff_pass_id: staffId }),
 		})
 			.catch((e: any) => {
-				console.log(e);
 				return e;
 			})
 			.then((e) => e.json())
 			.then((data) => {
 				const resStaffInfo = data.data;
-				console.log(resStaffInfo);
 				setStaffInfo(resStaffInfo);
 				return resStaffInfo.length ? resStaffInfo[0].team_name : "";
 			})
@@ -50,7 +49,6 @@ export default function App() {
 			.then((e) => e.json())
 			.then((data: any) => {
 				const resRedeemed = data.data;
-				console.log("resRedeemed", resRedeemed);
 				setRedeemedStatus(resRedeemed);
 			});
 	};
@@ -78,15 +76,24 @@ export default function App() {
 			/>
 		));
 	};
+
 	const renderButton = () => {
-		return redeemedStatus?.team_name ? (
-			<RedeemedButton redeemedStatus={redeemedStatus} />
-		) : (
-			<RedeemButton
-				redeemedStatus={redeemedStatus}
-				teamName={staffInfo.length ? staffInfo[0].team_name : ""}
-				getRedemptionStatus={getRedemptionStatus}
-			/>
+		return (
+			<Show>
+				<Show.When isTrue={redeemedStatus?.team_name}>
+					<RedeemedButton redeemedStatus={redeemedStatus} />
+				</Show.When>
+
+				<Show.Else>
+					<RedeemButton
+						redeemedStatus={redeemedStatus}
+						teamName={
+							staffInfo.length ? staffInfo[0].team_name : ""
+						}
+						getRedemptionStatus={getRedemptionStatus}
+					/>
+				</Show.Else>
+			</Show>
 		);
 	};
 
@@ -98,20 +105,22 @@ export default function App() {
 			</h1>
 			<div className="max-w-2xl mx-auto p-6 bg-[#ffffff] rounded-lg shadow-lg text-[#161853] flex flex-col gap-2 w-full min-h-96 z-10">
 				<SearchBar handleLookupStaffID={handleLookupStaffID} />
-				{teamMembers.length ? (
-					<>
+				<Show>
+					<Show.When isTrue={teamMembers.length}>
 						<StaffInfoCard
 							staffInfo={staffInfo[0]}
 							teamInfo={{ count: teamMembers.length }}
 						/>
 						<TeamMemberView teamMembers={teamMembers} />
 						{renderButton()}
-					</>
-				) : (
-					<div className="my-12 w-full h-full text-gray-700 text-center">
-						Search by Staff ID for redemption information
-					</div>
-				)}
+					</Show.When>
+
+					<Show.Else>
+						<div className="my-12 w-full h-full text-gray-700 text-center">
+							Search by Staff ID for redemption information
+						</div>
+					</Show.Else>
+				</Show>
 			</div>
 		</div>
 	);
