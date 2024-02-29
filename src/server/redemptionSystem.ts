@@ -4,11 +4,11 @@ import { Database, DatabaseConfig } from "../db/database";
 
 export class RedemptionSystem {
 	private dbConfig: DatabaseConfig = {
-		user: "SA",
-		password: "Password123",
-		server: "localhost",
-		port: 1433,
-		database: "GOVSUPPLY_GOVWALLET_THA",
+		user: process.env.DB_USER || "SA",
+		password: process.env.DB_PASSWORD || "Password123",
+		server: process.env.DB_SERVER || "localhost",
+		port: parseInt(process.env.DB_PORT || "1433"),
+		database: process.env.DB_DATABASE_NAME || "GOVSUPPLY_GOVWALLET_THA",
 		trustServerCertificate: true,
 		options: {
 			encrypt: true,
