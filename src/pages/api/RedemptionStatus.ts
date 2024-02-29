@@ -20,6 +20,7 @@ export default function handler(
 	redemptionSystem
 		.getRedemptionStatus(team_name)
 		.then((data: RedemptionData) => {
+			console.log("here", data);
 			res.status(200).json({ data: data });
 		});
 }

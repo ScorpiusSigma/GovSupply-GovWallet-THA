@@ -21,7 +21,7 @@ export default function TeamMemberView(props: any) {
 		const styleUnselected =
 			"px-4 py-2 font-semibold text-gray-900 hover:bg-gray-50 border-x";
 
-		const incPage = () => setPage(() => Math.min(pages.length, page + 1));
+		const incPage = () => setPage(() => Math.min(pages.length - 1, page + 1));
 		const decPage = () => setPage(() => Math.max(0, page - 1));
 
 		return (

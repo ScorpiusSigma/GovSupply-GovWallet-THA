@@ -69,8 +69,9 @@ export default function App() {
 	};
 
 	const renderSnowflakes = () => {
-		return [...Array(10)].map((x) => (
+		return [...Array(10)].map((x, index) => (
 			<img
+				key={index}
 				src="https://i.gifer.com/19V4.gif"
 				className="top-0 left-0 -z-0 w-full opacity-20"
 			/>

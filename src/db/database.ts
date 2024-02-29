@@ -26,11 +26,11 @@ export class Database {
 				return pool.request().query(query);
 			})
 			.then((result) => {
-				return result.recordset;
+				return { success: true, data: result.recordset };
 			})
 			.catch((err) => {
-				console.error("Error:", err);
-				return [];
+				console.error("Error:", "Failed to connect to localhost");
+				return { success: false, data: [] };
 			})
 			.finally(() => {
 				// Close the connection pool
